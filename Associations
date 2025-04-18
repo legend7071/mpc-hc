@@ -1,0 +1,64 @@
+// This is a conceptual code snippet and might require adaptation to fit the MPC-HC codebase.
+
+// You would likely need to modify the installer or the settings dialog.
+
+// In the installer, during the file association step:
+
+// Check if MP4 is already associated with another program.
+if (!IsFileAssociated(".mp4")) {
+    // Associate .mp4 with MPC-HC
+    AssociateFile(".mp4", "MPC-HC");
+}
+
+// Check if MKV is already associated with another program.
+if (!IsFileAssociated(".mkv")) {
+    // Associate .mkv with MPC-HC
+    AssociateFile(".mkv", "MPC-HC");
+}
+
+// In the settings dialog (Options -> Formats):
+
+// Add checkboxes for MP4 and MKV in the "File Associations" section.
+
+// When the user clicks "Apply" or "OK":
+if (IsCheckboxChecked("associateMP4")) {
+    AssociateFile(".mp4", "MPC-HC");
+} else {
+    RemoveFileAssociation(".mp4", "MPC-HC");
+}
+
+if (IsCheckboxChecked("associateMKV")) {
+    AssociateFile(".mkv", "MPC-HC");
+} else {
+    RemoveFileAssociation(".mkv", "MPC-HC");
+}
+
+// Helper functions (these would need to be implemented using the MPC-HC codebase):
+
+bool IsFileAssociated(const char* extension) {
+    // Check the Windows registry to see if the extension is associated with any program.
+    // This typically involves querying HKEY_CLASSES_ROOT\.extension.
+    // Return true if an association exists, false otherwise.
+    // ... implementation details ...
+    return false; // Placeholder
+}
+
+void AssociateFile(const char* extension, const char* programName) {
+    // Write to the Windows registry to associate the extension with the specified program.
+    // This typically involves creating/modifying keys under HKEY_CLASSES_ROOT\.extension
+    // and HKEY_CLASSES_ROOT\ProgramName.
+    // Ensure proper handling of program paths and icons.
+    // ... implementation details ...
+}
+
+void RemoveFileAssociation(const char* extension, const char* programName) {
+    // Remove the association from the Windows registry.
+    // This might involve deleting keys or setting default handlers.
+    // ... implementation details ...
+}
+
+bool IsCheckboxChecked(const char* checkboxName) {
+    // Check the state of the checkbox in the settings dialog.
+    // ... implementation details ...
+    return false; // Placeholder
+}
